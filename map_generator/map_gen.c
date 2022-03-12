@@ -74,7 +74,7 @@ void    make_error(int fd, int len, int height, char *error_name)
 }
 
 void    gen_map(char **argv)
-/* Ne prend aps en compte les petites maps pas de checker non plus */
+/* Ne prend aps en compte les petites maps pas de checker non plus | Lancer ce programme avant tout autres fonctions sur le main*/
 {
     int len;
     int height;
