@@ -2,7 +2,6 @@
 # define SO_LONG_H
 
 # include "get_next_line/get_next_line.h"
-# include "ft_printf-42/ft_printf/ft_printf.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -36,8 +35,20 @@ typedef struct s_mv
 void    get_map(int fd, t_map map);
 void    audit(t_map map);
 void	end_program(char *mess);
-char    *ft_strdup(const char *s1);
 t_mv    init_mv(t_mv pos);
 t_map   init_map(t_map map);
+\
+/*          lib         */
+int     ft_atoi(char *str)
+char    *ft_strdup(const char *s1);
+int     ft_strlen(const char *str)
+/*         map geb      */
+void    write_first_line(int len, int fd);
+void    rdm_line(int len, int fd);
+void    write_top_bot(int len, int fd);
+void    rdm_line_error(int fd, int len);
+void    loop_rline(int i, int height, int fd, char *error_name);
+void    gen_map(char **argv)
+void    make_error(int fd, int len, int height, char *error_name)
 \
 #endif
