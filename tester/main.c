@@ -16,17 +16,29 @@ t_map *init_map(void)
     return (map);
 }
 
+void    afft_map(t_map *map)
+{
+    printf("Height  %i\n", map->height);
+    printf("len     %i\n", map->len);
+    printf("c init  %i\n", map->c_init);
+    printf("c e     %i\n", map->c_e);
+    printf("c p     %i\n", map->c_p);
+    printf("c c     %i\n", map->c_c);
+    printf("c b     %i\n", map->c_b);
+    printf("c obl   %i\n", map->c_oblong);
+    printf("c wall  %i\n", map->c_wall);
+}
+
 int main(int argc, char ** argv)
 {
-    // int fd;
+    int fd;
     t_map *map;
     (void)argc;
 
-    printf("O\n");
-    int fd = open(argv[1], O_RDONLY);
-    printf("%i\n", fd);
+    fd = open(argv[1], O_RDONLY);
     map = init_map();
-    printf("%i\n", fd);
-    get_map(fd, map);
-    // afftab(map.map);
+    get_map(fd, map); 
+    afftab(map->map);
+    audit(map);
+    free(map);
 }

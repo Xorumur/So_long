@@ -2,7 +2,7 @@ NAME	= test
 
 OBJ		= $(SRCS:.c=.o)
 
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-g -fsanitize=address
 
 SRCS	=	main.c ../audit_map/parsing_map.c ../gnl/get_next_line.c \
 			../gnl/get_next_line_utils.c ../error_management/error.c afftab.c
