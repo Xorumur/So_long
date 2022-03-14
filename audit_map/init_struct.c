@@ -9,7 +9,6 @@ t_map init_map(t_map map)
     map.c_c = 0;
     map.c_oblong = 0;
     map.c_wall = 0;
-    return (map);
 }
 
 t_mv    init_mv(t_mv pos)
