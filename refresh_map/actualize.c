@@ -11,6 +11,7 @@ void    maj_map(t_map map, t_mv pos, char keybind)
     else if (keybind == 'D')
         pos.tmp_x = pos.x + 1;
     map_replace(pos, map);
+    bot_mv(pos, map);
     audit_new_pos(pos, map);
     map.map[pos.y][pos.x] = 'P';
 }
@@ -47,5 +48,7 @@ void    audit_new_pos(t_mv pos, t_map map)
         pos.x = pos.tmp_x;
         pos.y = pos.tmp_y;        
     }
+    else if (tmp_y == bot_y && tmp_x == bot_x)
+        end_program(GOT_CAUGHT);
 }
 
