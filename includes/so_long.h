@@ -11,6 +11,7 @@
 # define ERROR_OBLONG "Error: This is not an oblong\n"
 # define ERROR_INIT "Error: There is not the require item in the map (E/C/P)\n"
 # define GOT_CAUGHT "You lose\n"
+# define WIN "You win\n"
 
 typedef struct s_map
 {
@@ -21,6 +22,7 @@ typedef struct s_map
     int     c_e;
     int     c_p;
     int     c_c;
+    int     c_b;
     int     c_oblong;
     int     c_wall;
 }   t_map;
@@ -33,8 +35,6 @@ typedef struct s_mv
     int     bot_x;
     int     temp_x;
     int     temp_y;
-    int     bot_e_x;
-    int     bot_e_y;
     int     bot_c_x;
     int     bot_c_y;   
     char    tmp;
@@ -45,7 +45,7 @@ typedef struct s_mv
 }   t_mv ;
 
 void    get_map(int fd, t_map map);
-void    audit(t_map map);
+void    audit(t_map map, t_mv pos);
 void	end_program(char *mess);
 t_mv    init_mv(t_mv pos);
 t_map   init_map(t_map map);

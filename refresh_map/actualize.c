@@ -12,6 +12,7 @@ void    maj_map(t_map map, t_mv pos, char keybind)
         pos.tmp_x = pos.x + 1;
     map_replace(pos, map);
     bot_mv(pos, map);
+    // AFFICHER LA MAP APRES LE MV DU BOT
     audit_new_pos(pos, map);
     map.map[pos.y][pos.x] = 'P';
 }
@@ -43,6 +44,8 @@ void    audit_new_pos(t_mv pos, t_map map)
     }
     else if (map.map[pos.tmp_y][pos.tmp_x] == 'E')
     {
+        if (map.c_c == 0)
+            end_program(WIN);
         pos.e_x = pos.tmp_x;
         pos.e_y = pos.tmp_y;
         pos.x = pos.tmp_x;

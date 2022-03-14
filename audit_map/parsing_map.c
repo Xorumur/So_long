@@ -34,7 +34,7 @@ static void    border_analyzer(t_map map)
     map.c_wall == 1;
 }
 
-static void    charac_analizer(t_map map, char **line)
+static void    charac_analizer(t_map map, char *line)
 {
     int     i;
 
@@ -43,24 +43,31 @@ static void    charac_analizer(t_map map, char **line)
     {
         if (line[i] == 'C')
             map.c_c += 1;
+        if (line[i] == 'P' && map.c_p == 1)
+            line[i] = '0';
+        if (line[i] == 'B' && map.c_b == 1)
+            line[i] = '0';
         else if (line[i] == 'P')
             map.c_p = 1;
         else if (line[i] == 'E')
             map.c_e = 1;
+        else if (line[i] == 'B')
+            map.c_b = 1;
         i++;
     }
 }
 
-void    audit(t_map map)
+void    audit(t_map map, t_mv pos)
 {
     int     i;
 
     i = 0;
-    map.len = ft_strlen(map.map[i]);
+    map.len = ft_strlen(map.map[i]) - 1;
     while (map.map[i] != '\n')
     {
+        init_pos(pos, map, map.map[i], i);
         charac_analyzer(map, map.map[i]);
-        if (ft_strlen(map.map[i]) !=  map.len)
+        if ((ft_strlen(map.map[i]) - 1) !=  map.len)
             end_program(ERROR_OBLONG);
         i++;
     }
