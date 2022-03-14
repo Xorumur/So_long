@@ -13,6 +13,7 @@ t_map *init_map(void)
     map->c_c = 0;
     map->c_oblong = 0;
     map->c_wall = 0;
+    map->key = 0;
     return (map);
 }
 
@@ -40,5 +41,5 @@ int main(int argc, char ** argv)
     get_map(fd, map); 
     afftab(map->map);
     audit(map);
-    free(map);
+    // free(map);
 }

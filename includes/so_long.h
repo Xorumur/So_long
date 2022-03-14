@@ -8,7 +8,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 # define BUFFER_SIZE 4096
 # define ERROR_WALL "Error: Not 1 in all the border\n"
@@ -30,6 +29,7 @@ typedef struct s_map
     int     c_b;
     int     c_oblong;
     int     c_wall;
+    int     key;
 }   t_map;
 
 typedef struct s_mv
