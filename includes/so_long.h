@@ -14,6 +14,7 @@
 # define ERROR_WALL "Error: Not 1 in all the border\n"
 # define ERROR_OBLONG "Error: This is not an oblong\n"
 # define ERROR_INIT "Error: There is not the require item in the map (E/C/P)\n"
+# define ERROR_BAD_CHAR "Error: There is another character than E/C/P/0/1\n"
 # define GOT_CAUGHT "You lose\n"
 # define WIN "You win\n"
 
@@ -49,7 +50,7 @@ typedef struct s_mv
 }   t_mv ;
 
 void    get_map(int fd, t_map *map);
-void    audit(t_map map); //void    audit(t_map map, t_mv pos);
+void    audit(t_map *map); //void    audit(t_map map, t_mv pos);
 void	end_program(char *mess);
 t_mv    init_mv(t_mv pos);
 t_map   *init_map(void);
@@ -72,6 +73,8 @@ void    bot_mv(t_mv pos, t_map map);
 int     audit_new_pos_bot(t_mv pos, t_map map);
 void    maj_map_bot(t_map map, t_mv pos, int keybind);
 /*          tester      */
-void afftab(char **map);
+void    afftab(char **map);
+void    ft_putstr(char *str);
+void    afft_map(t_map *map);
 \
 #endif

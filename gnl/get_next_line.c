@@ -3,10 +3,10 @@
 char	*get_next_line(int fd)
 {
 	static char	*c_line = NULL;
-	char		buf[4096 + 1];
+	char		buf[2];
 	int			pos[2];
 
-	if (fd < 0 || 4096 < 0 || read(fd, buf, 0) < 0)
+	if (fd < 0 || read(fd, buf, 0) < 0)
 		return (NULL);
 	if (c_line)
 	{	
@@ -14,14 +14,14 @@ char	*get_next_line(int fd)
 		if (pos[0] != -1)
 			return (ft_cutstr((&c_line), pos[0]));
 	}
-	pos[1] = read(fd, buf, 4096);
+	pos[1] = read(fd, buf, 1);
 	while (pos[1] > 0)
 	{
 		c_line = ft_fixnorm(c_line, buf, pos[1]);
 		pos[0] = ft_strrchr(c_line, '\n');
 		if (pos[0] != -1)
 			return (ft_cutstr((&c_line), pos[0]));
-		pos[1] = read(fd, buf, 4096);
+		pos[1] = read(fd, buf, 1);
 	}
 	if (c_line == NULL)
 		return (NULL);
