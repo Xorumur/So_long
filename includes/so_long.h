@@ -62,5 +62,10 @@ void    rdm_line_error(int fd, int len);
 void    loop_rline(int i, int height, int fd, char *error_name);
 void    gen_map(char **argv);
 void    make_error(int fd, int len, int height, char *error_name);
+/*          bot         */
+int     random_number(int min_num, int max_num);
+void    bot_mv(t_mv pos, t_map map);
+int     audit_new_pos_bot(t_mv pos, t_map map);
+void    maj_map_bot(t_map map, t_mv pos, int keybind);
 \
 #endif

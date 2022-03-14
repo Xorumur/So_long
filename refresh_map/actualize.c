@@ -48,7 +48,7 @@ void    audit_new_pos(t_mv pos, t_map map)
         pos.x = pos.tmp_x;
         pos.y = pos.tmp_y;        
     }
-    else if (tmp_y == bot_y && tmp_x == bot_x)
+    else if (pos.tmp_y == pos.bot_y && pos.tmp_x == pos.bot_x)
         end_program(GOT_CAUGHT);
 }
 
