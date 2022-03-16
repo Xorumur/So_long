@@ -27,6 +27,7 @@ t_mv    *init_mv(void)
     pos->y = 0;
     pos->tmp_x = 0;
     pos->tmp_y = 0;
+    pos->count = 0;
     pos->e_x = -1;
     pos->e_y = -1;
     return (pos);
@@ -64,16 +65,22 @@ int main(int argc, char **argv)
     fd = open(argv[1], O_RDONLY);
     map = init_map();
     pos = init_mv();
-    map->c_b = 0;
     get_map(fd, map);
     afftab(map->map);
     audit(map, pos);
     maj_map(map, pos, argv[2][0]);
+    maj_map(map, pos, argv[2][0]);
+    // maj_map(map, pos, argv[2][0]);
+    // maj_map(map, pos, argv[2][0]);
+    // maj_map(map, pos, argv[2][0]);
+    // maj_map(map, pos, argv[2][0]);
+    // maj_map(map, pos, argv[2][0]);
     printf("\n"); 
     ajust(map, pos);
     printf("ici\n"); 
     afftab(map->mini);
     printf("\n");
-    // afftab(map->map);
+    printf("Mouvement : %i\n", pos->count);
+    afftab(map->map);
     free(map);
 }

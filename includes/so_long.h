@@ -9,7 +9,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 # define BUFFER_SIZE 4096
 # define ERROR_WALL "Error: Not 1 in all the border\n"
@@ -50,6 +49,7 @@ typedef struct s_mv
     int     tmp_y;
     int     e_x;
     int     e_y;
+    int     count;
 }   t_mv;
 
 void    get_map(int fd, t_map *map);

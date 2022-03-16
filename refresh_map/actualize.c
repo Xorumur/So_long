@@ -16,19 +16,25 @@ void    maj_map(t_map *map, t_mv *pos, char keybind)
         tmp_pos(pos, pos->x, (pos->y + 1));
     else if (keybind == 'D')
         tmp_pos(pos, (pos->x + 1), pos->y);
-    map_replace(pos, map);
     bot_mv(pos, map); // Activer ou pas pour le bonus.
     // AFFICHER LA MAP APRES LE MV DU BOT
+    // COMPTEUR DE MVT
+    map_replace(pos, map);
     audit_new_pos(pos, map);
     map->map[pos->y][pos->x] = 'P';
 }
 
 void    map_replace(t_mv *pos, t_map *map)
-{   
+{
+    char new;
+
+    new = map->map[pos->tmp_y][pos->tmp_x];
     if (pos->e_x > 0 && pos->e_y > 0)
         map->map[pos->y][pos->x] = 'E';
     else 
         map->map[pos->y][pos->x] = '0';
+    if (new == 'E' || new == '0' || new == 'C')
+        pos->count++;
     pos->e_x = -1;
     pos->e_y = -1;    
 }
