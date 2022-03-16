@@ -68,9 +68,11 @@ int main(int argc, char **argv)
     afftab(map->map);
     audit(map, pos);
     maj_map(map, pos, argv[2][0]);
-    maj_map(map, pos, argv[2][0]);
-    maj_map(map, pos, argv[2][0]);
+    printf("\n"); 
+    ajust(map, pos);
+    printf("ici\n"); 
+    afftab(map->mini);
     printf("\n");
-    afftab(map->map);
+    // afftab(map->map);
     free(map);
 }

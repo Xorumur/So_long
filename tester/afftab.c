@@ -15,8 +15,12 @@ void afftab(char **map)
 void    ft_putstr(char *str)
 {
     int i;
+    int len;
 
+    len = ft_strlen(str) - 1;
     i = 0;
     while (str[i])
         printf("%c", str[i++]);
+    if (str[len] != '\n')
+        printf("\n");
 }
