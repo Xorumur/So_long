@@ -23,10 +23,10 @@ void    ajust(t_map *m, t_mv *p)
 
     j = 0;
     i = 0;
-    m->mini = malloc(sizeof(char *) * 7);
-    while (i <= 5)
+    m->mini = malloc(sizeof(char *) * 7); // Nombre de ligne max a malloc + 1
+    while (i <= 5) // Prendre 6 lignes
     {
-        if ((p->y + j - 2) < 0)
+        if ((p->y + j - 2) < 0) // Check si la ligne existe
         {
             j++;
         }
@@ -46,7 +46,7 @@ char    *str_cut(char *dst, char *src, int  start, int end, t_map *map)
 
     i = 0;
     dst = malloc((end - start + 2)* sizeof(*dst));
-    while (start <= end)
+    while (start <= end) // Copie la ligne entre start et end et ajuste.
     {
         if (start < 0)
         {
