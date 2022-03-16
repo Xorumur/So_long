@@ -17,7 +17,7 @@ void    maj_map(t_map *map, t_mv *pos, char keybind)
     else if (keybind == 'D')
         tmp_pos(pos, (pos->x + 1), pos->y);
     map_replace(pos, map);
-    bot_mv(pos, map);
+    bot_mv(pos, map); // Activer ou pas pour le bonus.
     // AFFICHER LA MAP APRES LE MV DU BOT
     audit_new_pos(pos, map);
     map->map[pos->y][pos->x] = 'P';

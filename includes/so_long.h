@@ -2,6 +2,7 @@
 # define SO_LONG_H
 
 # include "../gnl/get_next_line.h"
+# include "../includes/so_long_bonus.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -21,6 +22,7 @@
 typedef struct s_map
 {
     char    **map;
+    char    **mini;
     int     height;
     int     len;
     int     c_init;
@@ -59,7 +61,10 @@ void    init_pos(t_mv *pos, t_map *map, char *line, int y);
 void    maj_map(t_map *map, t_mv *pos, char keybind);
 void    map_replace(t_mv *pos, t_map *map);
 void    audit_new_pos(t_mv *pos, t_map *map);
-
+void    tmp_pos(t_mv *pos, int x, int y);
+void    tmp_pos_bot(t_mv *pos, int x, int y);
+void    ajust(t_map *map, t_mv *pos);
+char    *str_cut(char *dst, char *src, int  start, int end, t_map *map);
 \
 /*          lib         */
 int     ft_atoi(char *str);
