@@ -14,10 +14,9 @@ char    **malloc_increment(char **tab, int size)
         i++;
     }
     tmp[i] = NULL;
-    // i = 0;
-    // while (tab[i])
-    //     free(tab[i++]);
-    // free(tab);
+    printf("A\n");
+    // afftab(tab);
+    free_tab_size(tab, i);
     return (tmp);
 }
 
@@ -34,6 +33,7 @@ void    get_map(int fd, t_map *map)
     while (line != NULL)
     {   
         tab[i++] = ft_strdup(line);
+        free(line);
         tab = malloc_increment(tab, i); 
         line = get_next_line(fd);
     }

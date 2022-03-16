@@ -65,6 +65,8 @@ void    tmp_pos(t_mv *pos, int x, int y);
 void    tmp_pos_bot(t_mv *pos, int x, int y);
 void    ajust(t_map *map, t_mv *pos);
 char    *str_cut(char *dst, char *src, int  start, int end, t_map *map);
+void    free_tab(char **tab);
+void    free_tab_size(char **tab, int size);
 \
 /*          lib         */
 int     ft_atoi(char *str);

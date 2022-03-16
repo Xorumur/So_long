@@ -70,6 +70,10 @@ int main(int argc, char **argv)
     audit(map, pos);
     maj_map(map, pos, argv[2][0]);
     maj_map(map, pos, argv[2][0]);
+    maj_map(map, pos, argv[2][0]);
+    maj_map(map, pos, argv[2][0]);
+    maj_map(map, pos, argv[2][0]);
+    maj_map(map, pos, argv[2][0]);
     printf("\n"); 
     ajust(map, pos);
     printf("ici\n"); 
@@ -77,5 +81,8 @@ int main(int argc, char **argv)
     printf("\n");
     printf("Mouvement : %i\n", pos->count);
     afftab(map->map);
+    free_tab(map->map);
+    free_tab(map->mini);
     free(map);
+    free(pos);
 }
