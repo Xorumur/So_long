@@ -11,6 +11,7 @@ t_map *init_map(void)
     map->c_e = 0;
     map->c_p = 0;
     map->c_c = 0;
+    map->c_b = 0;
     map->c_oblong = 0;
     map->c_wall = 0;
     map->key = 0;
