@@ -9,14 +9,15 @@ char    **malloc_increment(char **tab, int size)
     tmp = malloc(sizeof(char *) * (size + 1));
     while (i < size)
     {
+        // printf("A");
         tmp[i] = ft_strdup(tab[i]);
         i++;
     }
-    i = 0;
-    tab[i] = NULL;
-    while (tab[i])
-        free(tab[i++]);
-    free(tab);
+    tmp[i] = NULL;
+    // i = 0;
+    // while (tab[i])
+    //     free(tab[i++]);
+    // free(tab);
     return (tmp);
 }
 
@@ -31,17 +32,15 @@ void    get_map(int fd, t_map *map)
     line = get_next_line(fd);
     i = 0;
     while (line != NULL)
-    {
+    {   
         tab[i++] = ft_strdup(line);
         tab = malloc_increment(tab, i); 
         line = get_next_line(fd);
     }
     tab[i] = NULL;
-    map->map = tab;
-    i = 0;
-    while (tab[i])
-        free(tab[i++]);
-    free(tab);    
+    if (ft_strlen(tab[i - 1]) == 1)
+        tab[i - 1] = NULL;
+    map->map = malloc_increment(tab, (i - 1));
     map->height = i;
 }
 
@@ -90,7 +89,7 @@ static void    charac_analizer(t_map *map, char *line)
     }
 }
 
-void    audit(t_map *map) //void    audit(t_map map, t_mv pos)
+void    audit(t_map *map, t_mv *pos) //void    audit(t_map map, t_mv pos)
 {
     int     i;
 
@@ -98,12 +97,13 @@ void    audit(t_map *map) //void    audit(t_map map, t_mv pos)
     map->len = ft_strlen(map->map[i]) - 2;
     while (map->map[i])
     {
-        // init_pos(pos, map, map.map[i], i);
+        init_pos(pos, map, map->map[i], i);
         charac_analizer(map, map->map[i]);
-        if (map->map[i][ft_strlen(map->map[i]) - 1] == '\0')
+        if (map->map[i][ft_strlen(map->map[i]) - 1] == '\0' || 
+                map->map[i][ft_strlen(map->map[i]) - 1] == '\n')
             map->key = 1;
         if ((ft_strlen(map->map[i]) - 2) !=  map->len && map->key != 1)
-            end_program(ERROR_OBLONG); 
+            end_program(ERROR_OBLONG);
         i++;
     }
     border_analyzer(map);

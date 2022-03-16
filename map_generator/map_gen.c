@@ -84,7 +84,7 @@ void    gen_map(char **argv)
     i = 0;
     height = ft_atoi(argv[3]);
     len = ft_atoi(argv[2]);
-    fd = open(arv[1], O_TRUNC | O_CREAT | O_RDWR, 0644);
+    fd = open(argv[1], O_TRUNC | O_CREAT | O_RDWR, 0644);
     if (argv[4] == "true")
     {
         write_top_bot(len, fd);

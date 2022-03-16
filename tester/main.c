@@ -17,6 +17,20 @@ t_map *init_map(void)
     return (map);
 }
 
+t_mv    *init_mv(void)
+{
+    t_mv    *pos;
+
+    pos = malloc(sizeof(t_mv));
+    pos->x = 0;
+    pos->y = 0;
+    pos->tmp_x = 0;
+    pos->tmp_y = 0;
+    pos->e_x = -1;
+    pos->e_y = -1;
+    return (pos);
+}
+
 void    afft_map(t_map *map)
 {
     printf("Height  %i\n", map->height);
@@ -30,16 +44,33 @@ void    afft_map(t_map *map)
     printf("c wall  %i\n", map->c_wall);
 }
 
-int main(int argc, char ** argv)
+void    afft_mv(t_mv *pos, t_map *map)
+{
+    printf("x   %i\n", pos->x);
+    printf("y   %i\n", pos->y);
+    printf("tmp x   %i\n", pos->tmp_x);
+    printf("tmp y   %i\n", pos->tmp_y);
+    printf("case    %c\n", map->map[pos->y][pos->x]);
+}
+
+int main(int argc, char **argv)
 {
     int fd;
-    t_map *map;
+    t_map   *map;
+    t_mv    *pos;
     (void)argc;
 
     fd = open(argv[1], O_RDONLY);
     map = init_map();
-    get_map(fd, map); 
+    pos = init_mv();
+    map->c_b = 0;
+    get_map(fd, map);
     afftab(map->map);
-    audit(map);
-    // free(map);
+    audit(map, pos);
+    maj_map(map, pos, argv[2][0]);
+    maj_map(map, pos, argv[2][0]);
+    maj_map(map, pos, argv[2][0]);
+    printf("\n");
+    afftab(map->map);
+    free(map);
 }

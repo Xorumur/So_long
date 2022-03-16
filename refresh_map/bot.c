@@ -1,48 +1,57 @@
 #include "../includes/so_long.h"
 
-void    maj_map_bot(t_map map, t_mv pos, int keybind)
+void    tmp_pos(t_mv *pos, int x, int y)
 {
-    if (keybind == 1)
-        pos.temp_y = pos.bot_y + 1;
-    else if (keybind == 2)
-        pos.temp_x -= pos.bot_x - 1;
-    else if (keybind == 3)
-        pos.temp_y = pos.bot_y - 1;
-    else if (keybind == 4)
-        pos.temp_x = pos.bot_x + 1;
+    pos->temp_y = y;
+    pos->temp_x = x;
 }
 
-int     audit_new_pos_bot(t_mv pos, t_map map)
+void    maj_map_bot(t_mv *pos, int keybind)
 {
-    if (map.map[pos.temp_y][pos.temp_x] == '1' 
-        || map.map[pos.temp_y][pos.temp_x] == 'C' 
-        || map.map[pos.temp_y][pos.temp_x] == 'E')
-        return (0);
-    else if (map.map[pos.temp_y][pos.temp_x] == '0')
+    if (keybind == 1)
     {
-        pos.bot_x = pos.temp_x;
-        pos.bot_y = pos.temp_y;
+        pos->temp_x = pos->bot_x;
+        pos->temp_y = pos->bot_y + 1;
+    }
+    else if (keybind == 2)
+        tmp_pos(pos, (pos->bot_x - 1), pos->bot_y);
+    else if (keybind == 3)
+        tmp_pos(pos, pos->bot_x, (pos->bot_y + 1));
+    else if (keybind == 4)
+        tmp_pos(pos, (pos->x + 1), pos->y);
+}
+
+int     audit_new_pos_bot(t_mv *pos, t_map *map)
+{
+    if (map->map[pos->temp_y][pos->temp_x] == '1' 
+            || map->map[pos->temp_y][pos->temp_x] == 'C' 
+            || map->map[pos->temp_y][pos->temp_x] == 'E')
+        return (0);
+    else if (map->map[pos->temp_y][pos->temp_x] == '0')
+    {
+        pos->bot_x = pos->temp_x;
+        pos->bot_y = pos->temp_y;
         return (1);
     }
-    else if (map.map[pos.temp_y][pos.temp_x] == 'P')
+    else if (map->map[pos->temp_y][pos->temp_x] == 'P')
         end_program(GOT_CAUGHT);
     else 
         return (0);
 }
 
-void    bot_mv(t_mv pos, t_map map)
+void    bot_mv(t_mv *pos, t_map *map)
 {
     int     rdm;
 
     rdm = random_number(1,4);
-    maj_map_bot(map, pos, rdm);   
-    map.map[pos.bot_y][pos.bot_x] = '0';
+    maj_map_bot(pos, rdm);   
+    map->map[pos->bot_y][pos->bot_x] = '0';
     while (audit_new_pos_bot(pos, map) == 0)
     {
         rdm = random_number(1,4);
-        maj_map_bot(map, pos, rdm);
+        maj_map_bot(pos, rdm);
     }
-    map.map[pos.bot_y][pos.bot_x] == 'B';
+    map->map[pos->bot_y][pos->bot_x] == 'B';
 }
 
 int random_number(int min_num, int max_num)
