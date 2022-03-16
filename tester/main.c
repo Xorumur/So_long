@@ -70,11 +70,6 @@ int main(int argc, char **argv)
     audit(map, pos);
     maj_map(map, pos, argv[2][0]);
     maj_map(map, pos, argv[2][0]);
-    // maj_map(map, pos, argv[2][0]);
-    // maj_map(map, pos, argv[2][0]);
-    // maj_map(map, pos, argv[2][0]);
-    // maj_map(map, pos, argv[2][0]);
-    // maj_map(map, pos, argv[2][0]);
     printf("\n"); 
     ajust(map, pos);
     printf("ici\n"); 
