@@ -16,7 +16,7 @@ char    **malloc_increment(char **tab, int size)
     tmp[i] = NULL;
     printf("A\n");
     // afftab(tab);
-    free_tab_size(tab, i);
+    // free_tab_size(tab, i);
     return (tmp);
 }
 
