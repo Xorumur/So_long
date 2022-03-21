@@ -2,24 +2,26 @@
 
 void    get_map(int fd, t_map *map)
 {
-    char    buf[2048];
+    char    buf[2049];
     int     len;
     char    *line;
     int     c;
 
     c = 0;
     len = read(fd, buf, 2048);
-    line = buf;
+    buf[len] = '\0';
+    line = ft_strdup(buf);
     len = read(fd, buf, 2048);
+    buf[len] = '\0';
     while (len > 0)
     {
         line = ft_strjoin_g(line, buf);
         len = read(fd, buf, 2048);
+        buf[len] = '\0';
         c++;
     }
     map->map = ft_split(line, '\n');
-    if (c > 0)
-        free(line);
+    free(line);
 }
 
 static void    border_analyzer(t_map *map)

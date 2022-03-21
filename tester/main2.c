@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     pos = init_mv();
     get_map(fd, map);
     afftab(map->map);
-    audit(map, pos);
+    // audit(map, pos);
     free_tab(map->map);
     free(map);
     free(pos);
