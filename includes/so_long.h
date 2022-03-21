@@ -67,11 +67,14 @@ void    ajust(t_map *map, t_mv *pos);
 char    *str_cut(char *dst, char *src, int  start, int end, t_map *map);
 void    free_tab(char **tab);
 void    free_tab_size(char **tab, int size);
+void    get_mapi(int fd, t_map *map);
 \
 /*          lib         */
 int     ft_atoi(char *str);
 char    *ft_strdup(char *s1);
 int     ft_strlen(char *str);
+char	*ft_strjoin_g(char *s1, char *s2);
+char	**ft_split(char *s, char c);
 /*         map geb      */
 void    write_first_line(int len, int fd);
 void    rdm_line(int len, int fd);

@@ -1,47 +1,25 @@
 #include "../includes/so_long.h"
 
-char    **malloc_increment(char **tab, int size)
-{
-    char    **tmp;
-    int     i;
-
-    i = 0;
-    tmp = malloc(sizeof(char *) * (size + 1));
-    while (i < size)
-    {
-        // printf("A");
-        tmp[i] = ft_strdup(tab[i]);
-        i++;
-    }
-    tmp[i] = NULL;
-    printf("A\n");
-    // afftab(tab);
-    // free_tab_size(tab, i);
-    return (tmp);
-}
-
 void    get_map(int fd, t_map *map)
 {
-    int     i;
+    char    buf[2048];
+    int     len;
     char    *line;
-    char    **tab;
+    int     c;
 
-    tab = malloc(sizeof(char *) * 2);
-    tab[1] = NULL;
-    line = get_next_line(fd);
-    i = 0;
-    while (line != NULL)
-    {   
-        tab[i++] = ft_strdup(line);
-        free(line);
-        tab = malloc_increment(tab, i); 
-        line = get_next_line(fd);
+    c = 0;
+    len = read(fd, buf, 2048);
+    line = buf;
+    len = read(fd, buf, 2048);
+    while (len > 0)
+    {
+        line = ft_strjoin_g(line, buf);
+        len = read(fd, buf, 2048);
+        c++;
     }
-    tab[i] = NULL;
-    if (ft_strlen(tab[i - 1]) == 1)
-        tab[i - 1] = NULL;
-    map->map = malloc_increment(tab, (i - 1));
-    map->height = i;
+    map->map = ft_split(line, '\n');
+    if (c > 0)
+        free(line);
 }
 
 static void    border_analyzer(t_map *map)
@@ -94,15 +72,12 @@ void    audit(t_map *map, t_mv *pos) //void    audit(t_map map, t_mv pos)
     int     i;
 
     i = 0;
-    map->len = ft_strlen(map->map[i]) - 2;
+    map->len = ft_strlen(map->map[i]) - 1;
     while (map->map[i])
     {
         init_pos(pos, map, map->map[i], i);
         charac_analizer(map, map->map[i]);
-        if (map->map[i][ft_strlen(map->map[i]) - 1] == '\0' || 
-                map->map[i][ft_strlen(map->map[i]) - 1] == '\n')
-            map->key = 1;
-        if ((ft_strlen(map->map[i]) - 2) !=  map->len && map->key != 1)
+        if ((ft_strlen(map->map[i]) - 1) !=  map->len)
             end_program(ERROR_OBLONG);
         i++;
     }
