@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlecherb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mlecherb <mlecherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:03:29 by mlecherb          #+#    #+#             */
-/*   Updated: 2022/03/29 19:08:56 by mlecherb         ###   ########.fr       */
+/*   Updated: 2022/03/29 20:05:06 by mlecherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ static void	charac_analizer(t_map *map, char *line)
 		if (line[i] == 'C')
 			map->c_c += 1;
 		else if (line[i] == 'P' && map->c_p == 1)
-			line[i] = '0';
+			end_program("Error : Multiple P");
 		else if (line[i] == 'B' && map->c_b == 1)
 			line[i] = '0';
+		else if (line[i] == 'E' && map->c_e == 1)
+			end_program("Error : Multiple E");
 		else if (line[i] == 'P')
-			map->c_p = 1;
+			map->c_p += 1;
 		else if (line[i] == 'E')
-			map->c_e = 1;
+			map->c_e += 1;
 		else if (line[i] == 'B')
 			map->c_b = 1;
 		else if (line[i] != '0' && line[i] != '1')
@@ -100,4 +102,6 @@ void	audit(t_map *map, t_mv *pos)
 		map->c_init = 1;
 	if (map->c_init != 1)
 		end_program(ERROR_INIT);
+	if (map->c_p > 1)
+		end_program("Multiple P");
 }

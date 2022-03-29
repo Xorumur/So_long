@@ -20,7 +20,7 @@ void	afftab(char **map)
 	while (map[i])
 	{
 		ft_putstr(map[i]);
-		printf("\n");
+		// printf("\n");
 		i++;
 	}
 }
@@ -33,5 +33,5 @@ void	ft_putstr(char *str)
 	len = ft_strlen(str) - 1;
 	i = 0;
 	while (str[i])
-		printf("%c", str[i++]);
+		// printf("%c", str[i++]);
 }

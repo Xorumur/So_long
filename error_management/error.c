@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlecherb <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mlecherb <mlecherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 19:01:27 by mlecherb          #+#    #+#             */
-/*   Updated: 2022/03/29 19:01:29 by mlecherb         ###   ########.fr       */
+/*   Updated: 2022/03/29 20:04:20 by mlecherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	end_program(char *mess)
 {
-	perror(mess);
-	exit (84);
+	write(1, mess, ft_strlen(mess));
+	write(1, "\n", 1);
+	exit (1);
 }

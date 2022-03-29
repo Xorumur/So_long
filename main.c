@@ -6,7 +6,7 @@
 /*   By: mlecherb <mlecherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 13:49:55 by mlecherb          #+#    #+#             */
-/*   Updated: 2022/03/29 18:30:34 by mlecherb         ###   ########.fr       */
+/*   Updated: 2022/03/29 20:05:15 by mlecherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		end_program("Error : Invalid fd");
 	vars.map = init_map();
 	vars.pos = init_mv();
 	get_map(fd, vars.map);
