@@ -1,7 +1,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../gnl/get_next_line.h"
+// # include "../gnl/get_next_line.h"
 # include "../includes/so_long_bonus.h"
 # include <stdio.h>
 # include <stdlib.h>
