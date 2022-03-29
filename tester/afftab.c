@@ -8,6 +8,7 @@ void afftab(char **map)
     while (map[i])
     {
         ft_putstr(map[i]);
+        printf("\n");
         i++;
     }
 }
@@ -21,6 +22,4 @@ void    ft_putstr(char *str)
     i = 0;
     while (str[i])
         printf("%c", str[i++]);
-    if (str[len] != '\n')
-        printf("\n");
 }

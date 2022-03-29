@@ -15,12 +15,11 @@ void    free_tab(char **tab)
     }
 }
 
-void    free_tab_size(char **tab, int size)
+void    free_all(t_vars *vars)
 {
-    int i;
-
-    i = 0;
-    while (i <= size)
-        free(tab[i++]);
-    free(tab);
+    free_tab(vars->map->map);
+    free_tab(vars->map->mini);
+    free(vars->map);
+    free(vars->pos);
+    free(vars);
 }

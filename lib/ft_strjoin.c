@@ -16,6 +16,7 @@ char	*ft_strjoin_g(char *s1, char *s2)
 		return (NULL);
 	while (s1[++i])
 		str[i] = s1[i];
+	free(s1);
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[i] = '\0';

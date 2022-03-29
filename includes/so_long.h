@@ -9,6 +9,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <mlx.h>
 
 # define BUFFER_SIZE 4096
 # define ERROR_WALL "Error: Not 1 in all the border\n"
@@ -52,22 +53,41 @@ typedef struct s_mv
     int     count;
 }   t_mv;
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+typedef struct  x_cordo {
+    int     x;
+    int     y;
+}   t_cordo;
+
+typedef struct s_vars {
+    void    *mlx;
+    void    *mlx_win;
+    t_mv    *pos;
+    t_map   *map;
+    t_data  img;
+    t_cordo *posi;
+}   t_vars;
+
 void    get_map(int fd, t_map *map);
 void    audit(t_map *map, t_mv *pos); //void    audit(t_map map, t_mv pos);
 void	end_program(char *mess);
-t_mv    *init_mv(void);
-t_map   *init_map(void);
 void    init_pos(t_mv *pos, t_map *map, char *line, int y);
-void    maj_map(t_map *map, t_mv *pos, char keybind);
-void    map_replace(t_mv *pos, t_map *map);
-void    audit_new_pos(t_mv *pos, t_map *map);
+int     maj_map(int keybind, t_vars *vars);
 void    tmp_pos(t_mv *pos, int x, int y);
-void    tmp_pos_bot(t_mv *pos, int x, int y);
-void    ajust(t_map *map, t_mv *pos);
+void    reattrib_pos(t_mv *pos, int x, int y);
+void    det_case_x(t_map *m, t_mv *p);
+void    det_case_y(t_map *m, t_mv *p, int x);
+void    ajust(t_map *map, t_mv *pos, int x, int y);
 char    *str_cut(char *dst, char *src, int  start, int end, t_map *map);
+void    free_all(t_vars *vars);
 void    free_tab(char **tab);
-void    free_tab_size(char **tab, int size);
-void    get_mapi(int fd, t_map *map);
 \
 /*          lib         */
 int     ft_atoi(char *str);
@@ -75,23 +95,17 @@ char    *ft_strdup(char *s1);
 int     ft_strlen(char *str);
 char	*ft_strjoin_g(char *s1, char *s2);
 char	**ft_split(char *s, char c);
-/*         map geb      */
-void    write_first_line(int len, int fd);
-void    rdm_line(int len, int fd);
-void    write_top_bot(int len, int fd);
-void    rdm_line_error(int fd, int len);
-void    loop_rline(int i, int height, int fd, char *error_name);
-void    gen_map(char **argv);
-void    make_error(int fd, int len, int height, char *error_name);
-/*          bot         */
-int     random_number(int min_num, int max_num);
-void    bot_mv(t_mv *pos, t_map *map);
-int     audit_new_pos_bot(t_mv *pos, t_map *map);
-void    maj_map_bot(t_mv *pos, int keybind);
+void	ft_putnbr(int nb);
 /*          tester      */
 void    afftab(char **map);
 void    ft_putstr(char *str);
 void    afft_map(t_map *map);
 void    afft_mv(t_mv *pos, t_map *map);
+/*          MLX         */
+void    print_tab(char  **tab, t_data *data);
+void    det_car(char c, t_data *data, int x, int y);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void    print_square(t_data *data, int x, int y, int color);
+
 \
 #endif

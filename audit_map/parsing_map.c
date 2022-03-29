@@ -2,23 +2,20 @@
 
 void    get_map(int fd, t_map *map)
 {
-    char    buf[2049];
+    char    buf[2];
     int     len;
     char    *line;
-    int     c;
 
-    c = 0;
-    len = read(fd, buf, 2048);
-    buf[len] = '\0';
+    len = read(fd, buf, 1);
+    buf[1] = '\0';
     line = ft_strdup(buf);
-    len = read(fd, buf, 2048);
-    buf[len] = '\0';
+    len = read(fd, buf, 1);
+    buf[1] = '\0';
     while (len > 0)
     {
         line = ft_strjoin_g(line, buf);
-        len = read(fd, buf, 2048);
-        buf[len] = '\0';
-        c++;
+        len = read(fd, buf, 1);
+        buf[1] = '\0';
     }
     map->map = ft_split(line, '\n');
     free(line);
@@ -33,14 +30,14 @@ static void    border_analyzer(t_map *map)
     j = 0;
     len = map->len - 1;
     i = 0;
+    // printf("%i\n", len);
     while (map->map[i])
     {
+        len = ft_strlen(map->map[i]) - 1;
         if (map->map[i][0] != '1' || map->map[i][len] != '1')
             end_program(ERROR_WALL);
         i++;
     }
-    if (map->map[0][j++] != '1' || map->map[i - 1][j++] != '1')
-        end_program(ERROR_WALL);
     map->c_wall = 1;
 }
 
@@ -74,15 +71,16 @@ void    audit(t_map *map, t_mv *pos) //void    audit(t_map map, t_mv pos)
     int     i;
 
     i = 0;
-    map->len = ft_strlen(map->map[i]) - 1;
+    map->len = ft_strlen(map->map[i]);
     while (map->map[i])
     {
         init_pos(pos, map, map->map[i], i);
         charac_analizer(map, map->map[i]);
-        if ((ft_strlen(map->map[i]) - 1) !=  map->len)
+        if ((ft_strlen(map->map[i])) !=  map->len)
             end_program(ERROR_OBLONG);
         i++;
     }
+    map->height = i;
     border_analyzer(map);
     map->c_oblong = 1;
     if (map->len == i)
